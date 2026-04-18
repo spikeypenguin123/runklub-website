@@ -52,9 +52,6 @@ nav {
 .nav-right { display: flex; align-items: center; gap: 2rem; }
 .nav-right a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
 .nav-right a:hover { color: var(--ink); }
-.btn-app { background: var(--grass); color: var(--paper) !important; padding: 0.6rem 1.5rem; border-radius: 100px; font-weight: 600 !important; font-size: 14px !important; transition: background 0.2s, transform 0.15s !important; }
-.btn-app:hover { background: var(--ink) !important; transform: scale(0.97) !important; }
-
 .hero { min-height: 100vh; padding: 9rem 3rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1300px; margin: 0 auto; position: relative; }
 .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
 .eyebrow-pill { background: var(--acid); color: var(--ink); font-size: 12px; font-weight: 600; padding: 0.3rem 0.9rem; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -66,8 +63,6 @@ h1 .line-rust { color: var(--rust); display: block; }
 .hero-body strong { color: var(--ink); font-weight: 600; }
 .hero-banner { background: var(--grass); color: var(--paper); padding: 1.25rem 1.75rem; border-radius: 16px; font-size: 1.05rem; line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem; }
 .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn-join-hero { display: inline-block; background: var(--grass); color: var(--paper); padding: 1rem 2.5rem; border-radius: 14px; font-size: 16px; font-weight: 700; text-decoration: none; transition: background 0.2s, transform 0.15s; }
-.btn-join-hero:hover { background: var(--ink); transform: scale(0.97); }
 .btn-dl { display: flex; align-items: center; gap: 0.6rem; background: var(--ink); color: var(--paper); padding: 0.875rem 1.75rem; border-radius: 14px; font-size: 15px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
 .btn-dl:hover { background: var(--grass); transform: scale(0.98); }
 .btn-dl-icon { font-size: 20px; }
@@ -181,23 +176,6 @@ h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem);
 .insta-post-inner { text-align: center; font-size: 2rem; opacity: 0.25; }
 .insta-coming { position: absolute; inset: 0; background: rgba(13,15,12,0.7); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; border-radius: 12px; }
 
-.waitlist-section { padding: 7rem 3rem; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
-.waitlist-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(184,255,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,255,60,0.03) 1px, transparent 1px); background-size: 48px 48px; }
-.waitlist-inner { position: relative; max-width: 640px; margin: 0 auto; }
-.waitlist-inner .section-tag { color: var(--acid); border-color: var(--acid); }
-.waitlist-inner h2 { color: var(--paper); font-size: clamp(3.5rem, 7vw, 7rem); }
-.waitlist-sub { font-size: 1.1rem; color: rgba(240,237,230,0.5); line-height: 1.7; margin-bottom: 3rem; }
-.waitlist-form { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; }
-.waitlist-form input[type="email"] { flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: var(--paper); font-family: 'Instrument Sans', sans-serif; font-size: 15px; padding: 1rem 1.5rem; border-radius: 14px; outline: none; transition: border-color 0.2s; }
-.waitlist-form input[type="email"]::placeholder { color: rgba(240,237,230,0.3); }
-.waitlist-form input[type="email"]:focus { border-color: rgba(184,255,60,0.4); }
-.btn-join { background: var(--acid); color: var(--ink); font-family: 'Instrument Sans', sans-serif; font-weight: 700; font-size: 15px; padding: 1rem 2rem; border-radius: 14px; border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.2s, transform 0.15s; }
-.btn-join:hover { opacity: 0.85; transform: scale(0.97); }
-.waitlist-locations { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
-.loc { display: flex; align-items: center; gap: 0.5rem; font-size: 13px; color: rgba(240,237,230,0.4); }
-.loc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acid); }
-.loc-dot.dim { background: rgba(184,255,60,0.3); }
-
 footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; color: rgba(240,237,230,0.3); font-size: 13px; }
 .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--paper); letter-spacing: 0.04em; }
 .footer-logo em { color: var(--acid); font-style: normal; }
@@ -214,9 +192,8 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   .insta-inner { grid-template-columns: 1fr; }
   .global-row { flex-direction: column; gap: 1.5rem; }
   nav { padding: 1rem 1.5rem; }
-  .nav-right a:not(.btn-app) { display: none; }
+  .nav-right a { display: none; }
   .hero { padding: 8rem 1.5rem 4rem; }
-  .waitlist-form { flex-direction: column; }
   footer { flex-direction: column; gap: 1rem; text-align: center; }
 }
 </style>
@@ -230,8 +207,6 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   <div class="nav-right">
     <a href="#why">Our mission</a>
     <a href="#how">How it works</a>
-    <a href="#waitlist">Waitlist</a>
-    <a href="#waitlist" class="btn-app">Get the app</a>
   </div>
 </nav>
 
@@ -248,9 +223,6 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
     </h1>
     <div class="hero-banner">
       Runklub connects you to local run clubs and communities that improve your mental and physical wellbeing. Drop a pin. Find your people. Show up.
-    </div>
-    <div class="hero-ctas">
-      <a href="#waitlist" class="btn-join-hero">Join the waitlist →</a>
     </div>
   </div>
 
@@ -387,29 +359,6 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
 
 
 
-<section class="waitlist-section" id="waitlist">
-  <div class="waitlist-bg"></div>
-  <div class="waitlist-inner">
-    <span class="section-tag">Early access</span>
-    <h2>First on<br>the line.</h2>
-    <p class="waitlist-sub">Be the first in your city to get Runklub. We're launching on the Gold Coast and Brisbane — then wherever you take us.</p>
-
-    <form class="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="waitlist-form">
-      <input type="hidden" name="form-name" value="waitlist">
-      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
-      <input type="email" name="email" id="wl-email" placeholder="your@email.com" required>
-      <button type="submit" class="btn-join">Join waitlist →</button>
-    </form>
-
-    <div class="waitlist-locations">
-      <div class="loc"><div class="loc-dot"></div> Gold Coast — launching soon</div>
-      <div class="loc"><div class="loc-dot"></div> Brisbane — launching soon</div>
-      <div class="loc"><div class="loc-dot dim"></div> Europe — coming late 2026</div>
-      <div class="loc"><div class="loc-dot dim"></div> Canada — coming late 2026</div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="footer-logo">run<em>klub</em></div>
   <div style="text-align:center;">
@@ -418,7 +367,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   </div>
   <div class="footer-links">
     <a href="#why">Mission</a>
-    <a href="#waitlist">Waitlist</a>
+    <a href="#how">How it works</a>
   </div>
 </footer>
 
@@ -431,38 +380,6 @@ document.addEventListener('mousemove', e => {
 document.querySelectorAll('a, button, .audience-card, .step-card, .feature-card').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('big'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
-});
-
-// Netlify Forms waitlist
-const form = document.getElementById('waitlist-form');
-const input = document.getElementById('wl-email');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const val = input.value.trim();
-  if (!val || !val.includes('@')) {
-    input.style.borderColor = 'rgba(220,100,80,0.5)';
-    setTimeout(() => input.style.borderColor = '', 1500);
-    return;
-  }
-  try {
-    const res = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString()
-    });
-    if (res.ok) {
-      input.value = '';
-      input.placeholder = "You're in! See you on the road 🤙";
-      setTimeout(() => input.placeholder = 'your@email.com', 4000);
-    } else {
-      input.placeholder = 'Something went wrong — try again.';
-      setTimeout(() => input.placeholder = 'your@email.com', 3000);
-    }
-  } catch (err) {
-    input.placeholder = 'Network error — try again.';
-    setTimeout(() => input.placeholder = 'your@email.com', 3000);
-  }
 });
 
 // Scroll reveal
