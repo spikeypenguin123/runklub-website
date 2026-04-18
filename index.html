@@ -5,195 +5,494 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Runklub — Run Together. Live Better.</title>
 <meta name="description" content="Runklub connects runners with local clubs and communities that improve mental and physical wellbeing. Find your tribe. Gold Coast, Australia.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink: #0d0f0c;
-  --paper: #f0ede6;
-  --grass: #2d5a1b;
-  --acid: #b8ff3c;
-  --warm: #e8d5b0;
-  --mist: #c8d4c0;
-  --rust: #c4521a;
-  --text-muted: #6b7a63;
-  --card-bg: #f7f4ed;
-  --border: rgba(45,90,27,0.12);
+  --canvas: #FBF7F2;
+  --canvas-alt: #F3EDE4;
+  --surface: #FFFFFF;
+  --coral: #FF5A4E;
+  --coral-deep: #E8422F;
+  --coral-soft: #FFD9D3;
+  --gold: #E8A62C;
+  --gold-soft: #F7E4B8;
+  --sage: #4F8A6E;
+  --sage-soft: #D4E5D9;
+  --ink: #1A1D24;
+  --ink-soft: #4A4E57;
+  --ink-muted: #8A8F99;
+  --sunset: linear-gradient(135deg, #FF5A4E 0%, #FF8A3D 45%, #E8A62C 100%);
+  --sunset-soft: linear-gradient(135deg, #FFD9D3 0%, #FFE4C9 50%, #F7E4B8 100%);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(26, 29, 36, 0.06);
+  --shadow-md: 0 8px 20px -8px rgba(26, 29, 36, 0.12);
+  --shadow-lg: 0 20px 40px -20px rgba(26, 29, 36, 0.18);
+  --shadow-coral: 0 8px 20px -8px rgba(255, 90, 78, 0.45);
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: var(--paper);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--canvas);
   color: var(--ink);
-  font-family: 'Instrument Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   cursor: none;
+  line-height: 1.5;
 }
 
 .cursor {
-  width: 12px; height: 12px; background: var(--acid); border-radius: 50%;
+  width: 12px; height: 12px; background: var(--coral); border-radius: 50%;
   position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%); transition: transform 0.1s, width 0.2s, height 0.2s;
   mix-blend-mode: multiply;
 }
 .cursor.big { width: 40px; height: 40px; }
 
+/* Wordmark */
+.wordmark { font-family: 'DM Sans', sans-serif; letter-spacing: -0.035em; line-height: 1; display: inline-block; text-decoration: none; }
+.wordmark-run { font-weight: 400; font-style: normal; color: inherit; }
+.wordmark-klub {
+  font-weight: 900; font-style: italic;
+  background: var(--sunset);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* Nav */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.25rem 3rem; background: rgba(240,237,230,0.9);
-  backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+  padding: 1.25rem 3rem;
+  background: rgba(251, 247, 242, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26, 29, 36, 0.06);
 }
-.logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--ink); line-height: 1; }
-.logo em { color: var(--grass); font-style: normal; }
+.logo { font-size: 1.8rem; color: var(--ink); }
 .nav-right { display: flex; align-items: center; gap: 2rem; }
-.nav-right a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.nav-right a { font-size: 14px; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
 .nav-right a:hover { color: var(--ink); }
-.hero { min-height: 100vh; padding: 9rem 3rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1300px; margin: 0 auto; position: relative; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  padding: 9rem 3rem 5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center; max-width: 1300px; margin: 0 auto;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute;
+  top: -20%; right: -20%;
+  width: 55vw; height: 55vw;
+  background: var(--sunset);
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero > * { position: relative; z-index: 1; }
 .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-.eyebrow-pill { background: var(--acid); color: var(--ink); font-size: 12px; font-weight: 600; padding: 0.3rem 0.9rem; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
-.eyebrow-text { font-size: 13px; color: var(--text-muted); font-style: italic; }
-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 9vw, 9rem); line-height: 0.92; letter-spacing: 0.01em; margin-bottom: 2rem; }
-h1 .line-green { color: var(--grass); display: block; }
-h1 .line-rust { color: var(--rust); display: block; }
-.hero-body { font-size: 1.15rem; color: var(--text-muted); max-width: 440px; line-height: 1.75; margin-bottom: 2.5rem; }
-.hero-body strong { color: var(--ink); font-weight: 600; }
-.hero-banner { background: var(--grass); color: var(--paper); padding: 1.25rem 1.75rem; border-radius: 16px; font-size: 1.05rem; line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem; }
-.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn-dl { display: flex; align-items: center; gap: 0.6rem; background: var(--ink); color: var(--paper); padding: 0.875rem 1.75rem; border-radius: 14px; font-size: 15px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
-.btn-dl:hover { background: var(--grass); transform: scale(0.98); }
-.btn-dl-icon { font-size: 20px; }
-.btn-dl-text { display: flex; flex-direction: column; line-height: 1.2; }
-.btn-dl-sub { font-size: 10px; font-weight: 400; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.08em; }
-.btn-dl-label { font-size: 15px; font-weight: 600; }
-.btn-secondary { background: transparent; color: var(--ink); padding: 0.875rem 1.75rem; border-radius: 14px; font-size: 15px; font-weight: 500; border: 1.5px solid var(--border); cursor: pointer; transition: border-color 0.2s, transform 0.15s; font-family: 'Instrument Sans', sans-serif; }
-.btn-secondary:hover { border-color: var(--grass); transform: scale(0.98); }
+.eyebrow-pill {
+  background: var(--surface);
+  border: 1px solid rgba(26,29,36,0.08);
+  color: var(--ink);
+  font-size: 12px; font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  box-shadow: var(--shadow-sm);
+}
+h1 {
+  font-weight: 900;
+  font-size: clamp(3.25rem, 8vw, 6.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.75rem;
+  color: var(--ink);
+}
+h1 .hl-line { display: block; }
+h1 .hl-em {
+  font-style: italic; font-weight: 900;
+  background: var(--sunset);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-banner {
+  background: var(--sage);
+  color: var(--canvas);
+  padding: 1.25rem 1.75rem;
+  border-radius: var(--radius-lg);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: 480px;
+  box-shadow: var(--shadow-md);
+}
 
-.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; height: 600px; }
-.hero-bg-circle { position: absolute; width: 420px; height: 420px; border-radius: 50%; background: var(--mist); opacity: 0.5; }
-.phone-mockup { width: 270px; height: 560px; background: var(--ink); border-radius: 40px; border: 8px solid var(--ink); overflow: hidden; position: relative; z-index: 2; box-shadow: 24px 32px 80px rgba(13,15,12,0.2); }
-.phone-inner { width: 100%; height: 100%; background: #111; border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; }
-.phone-status { display: flex; justify-content: space-between; padding: 0.75rem 1rem 0.25rem; font-size: 11px; color: rgba(255,255,255,0.5); }
-.phone-content { flex: 1; padding: 0.5rem 0.75rem; overflow: hidden; }
-.phone-map-area { height: 200px; background: #1a1f18; border-radius: 18px; position: relative; overflow: hidden; margin-bottom: 1rem; }
-.map-lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(184,255,60,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(184,255,60,0.06) 1px, transparent 1px); background-size: 20px 20px; }
-.map-road { position: absolute; background: rgba(255,255,255,0.07); }
-.road-h { height: 6px; left: 0; right: 0; }
-.road-v { width: 6px; top: 0; bottom: 0; }
-.road-1 { top: 70px; } .road-2 { top: 140px; } .road-3 { left: 80px; } .road-4 { left: 160px; }
+/* Hero phone mockup */
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; height: 620px; }
+.phone-mockup {
+  width: 280px; height: 580px;
+  background: var(--ink);
+  border-radius: 44px;
+  border: 10px solid var(--ink);
+  overflow: hidden;
+  position: relative; z-index: 2;
+  box-shadow: 0 40px 80px -20px rgba(26, 29, 36, 0.35);
+}
+.phone-inner {
+  width: 100%; height: 100%;
+  background: var(--canvas);
+  border-radius: 34px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.phone-status {
+  display: flex; justify-content: space-between;
+  padding: 0.75rem 1rem 0.4rem;
+  font-size: 11px; font-weight: 600;
+  color: var(--ink);
+}
+.phone-content { flex: 1; padding: 0.4rem 0.75rem 0.75rem; overflow: hidden; display: flex; flex-direction: column; }
+.phone-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); letter-spacing: -0.015em; margin-bottom: 0.65rem; }
+.phone-map-area {
+  height: 160px;
+  background: var(--sage-soft);
+  border-radius: var(--radius-lg);
+  position: relative; overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+.map-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(26,29,36,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,29,36,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.map-road { position: absolute; background: var(--canvas); opacity: 0.75; }
+.road-h { height: 5px; left: 0; right: 0; }
+.road-v { width: 5px; top: 0; bottom: 0; }
+.road-1 { top: 55px; }
+.road-2 { top: 115px; }
+.road-3 { left: 75px; }
+.road-4 { left: 165px; }
 .pin { position: absolute; display: flex; align-items: center; justify-content: center; }
-.pin-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--acid); z-index: 2; position: relative; }
-.pin-pulse { position: absolute; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--acid); opacity: 0; animation: ping 2.4s ease-out infinite; }
+.pin-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--coral);
+  border: 2px solid var(--canvas);
+  z-index: 2; position: relative;
+  box-shadow: var(--shadow-coral);
+}
+.pin-pulse {
+  position: absolute;
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid var(--coral);
+  opacity: 0;
+  animation: ping 2.4s ease-out infinite;
+}
 @keyframes ping { 0% { transform: scale(0.3); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
-.pin-a { top: 55px; left: 50px; } .pin-b { top: 90px; left: 130px; } .pin-c { top: 130px; left: 80px; }
-.nearby-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
-.klub-row { background: #1a1f18; border-radius: 14px; padding: 0.65rem 0.75rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem; animation: slideUp 0.5s ease both; }
+.pin-a { top: 35px; left: 45px; }
+.pin-b { top: 75px; left: 125px; }
+.pin-c { top: 120px; left: 70px; }
+.phone-overline {
+  font-size: 9.5px; font-weight: 600;
+  color: var(--ink-muted);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.event-row {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.6rem;
+  margin-bottom: 0.4rem;
+  display: flex; align-items: center; gap: 0.55rem;
+  box-shadow: var(--shadow-sm);
+  animation: slideUp 0.5s ease both;
+}
 @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-.klub-row:nth-child(2) { animation-delay: 0.15s; } .klub-row:nth-child(3) { animation-delay: 0.3s; }
-.klub-avatar { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.k-green { background: rgba(184,255,60,0.12); } .k-rust { background: rgba(196,82,26,0.15); } .k-mist { background: rgba(200,212,192,0.15); }
-.klub-details { flex: 1; min-width: 0; }
-.klub-name { font-size: 12px; font-weight: 600; color: #f0ede6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.klub-sub { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 2px; }
-.klub-chip { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 100px; white-space: nowrap; }
-.chip-open { background: rgba(184,255,60,0.15); color: var(--acid); }
-.chip-full { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); }
+.event-row:nth-of-type(2) { animation-delay: 0.15s; }
+.event-row:nth-of-type(3) { animation-delay: 0.3s; }
+.date-badge {
+  width: 36px; flex-shrink: 0;
+  background: var(--sunset-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.28rem 0;
+  text-align: center;
+  line-height: 1;
+}
+.date-dow { display: block; font-size: 8px; font-weight: 700; color: var(--coral-deep); letter-spacing: 0.1em; }
+.date-day { display: block; font-size: 14px; font-weight: 900; color: var(--ink); margin-top: 1px; letter-spacing: -0.02em; }
+.event-body { flex: 1; min-width: 0; }
+.event-title { font-size: 11.5px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.01em; }
+.event-meta { font-size: 10px; color: var(--ink-muted); margin-top: 1px; }
+.going-chip {
+  font-size: 9.5px; font-weight: 700;
+  padding: 3px 7px;
+  border-radius: var(--radius-full);
+  background: var(--sage-soft);
+  color: var(--sage);
+  display: flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+}
+.going-chip.muted { background: rgba(26,29,36,0.06); color: var(--ink-muted); }
+.going-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--sage); }
+.going-chip.muted .going-dot { background: var(--ink-muted); }
+.phone-cta {
+  margin-top: auto;
+  background: var(--coral);
+  color: var(--canvas);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: none;
+  box-shadow: var(--shadow-coral);
+  letter-spacing: -0.005em;
+}
 
-.float-card { position: absolute; background: white; border-radius: 16px; padding: 0.75rem 1rem; box-shadow: 0 8px 32px rgba(13,15,12,0.1); z-index: 3; border: 1px solid var(--border); }
-.float-1 { top: 60px; right: -30px; min-width: 160px; }
-.float-2 { bottom: 100px; left: -40px; }
-.float-stat { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--grass); line-height: 1; }
-.float-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-.float-wellbeing { display: flex; align-items: center; gap: 8px; }
-.wellbeing-bars { display: flex; gap: 3px; align-items: flex-end; }
-.wb { width: 6px; border-radius: 3px; background: var(--acid); }
-
-.ticker-wrap { background: var(--grass); overflow: hidden; padding: 0.9rem 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
-.ticker-track { display: flex; gap: 3rem; animation: ticker 28s linear infinite; white-space: nowrap; }
+/* Ticker */
+.ticker-wrap {
+  background: var(--ink);
+  overflow: hidden;
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(251,247,242,0.05);
+  border-bottom: 1px solid rgba(251,247,242,0.05);
+}
+.ticker-track { display: flex; gap: 3rem; animation: ticker 32s linear infinite; white-space: nowrap; }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.06em; color: rgba(240,237,230,0.5); display: flex; align-items: center; gap: 1.5rem; }
-.ticker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acid); flex-shrink: 0; }
+.ticker-item {
+  font-size: 0.95rem; font-weight: 600;
+  color: rgba(251,247,242,0.55);
+  letter-spacing: 0.01em;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.ticker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); flex-shrink: 0; }
 
+/* Shared section label */
+.section-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  color: var(--ink-muted);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+
+/* Why */
 .why-section { padding: 7rem 3rem; max-width: 1300px; margin: 0 auto; }
 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.section-tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--grass); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 2px solid var(--acid); padding-bottom: 2px; }
-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 0.95; letter-spacing: 0.01em; margin-bottom: 1.5rem; }
-.body-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.25rem; }
-.body-text strong { color: var(--ink); font-weight: 600; }
-.stat-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
-.stat-block { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; }
-.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--grass); line-height: 1; }
-.stat-txt { font-size: 13px; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4; }
+.body-text {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+.body-text strong { color: var(--ink); font-weight: 700; }
 
-.manifesto-block { background: var(--grass); border-radius: 24px; padding: 2.5rem; color: var(--paper); }
-.manifesto-block blockquote { font-family: 'Instrument Sans', sans-serif; font-size: 1.4rem; font-style: italic; line-height: 1.6; font-weight: 400; margin-bottom: 1.5rem; opacity: 0.92; }
-.manifesto-pillars { display: flex; flex-direction: column; gap: 0.75rem; }
-.pillar { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 14px; opacity: 0.8; line-height: 1.5; }
-.pillar-icon { width: 28px; height: 28px; border-radius: 8px; background: rgba(184,255,60,0.2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+/* Manifesto */
+.manifesto-block {
+  background: var(--sage);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  color: var(--canvas);
+  box-shadow: var(--shadow-lg);
+}
+.manifesto-block blockquote {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  color: var(--canvas);
+  opacity: 0.95;
+}
+.manifesto-pillars { display: flex; flex-direction: column; gap: 0.85rem; }
+.pillar {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 14px; line-height: 1.55;
+  color: rgba(251,247,242,0.85);
+}
+.pillar strong { color: var(--canvas); font-weight: 700; }
+.pillar-icon {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  background: rgba(251,247,242,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+  margin-top: 1px;
+}
 
+/* How */
 .how-section { background: var(--ink); padding: 7rem 3rem; }
 .how-inner { max-width: 1300px; margin: 0 auto; }
-.how-inner .section-tag { color: var(--acid); border-color: var(--acid); }
-.how-inner h2 { color: var(--paper); }
-.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
-.step-card { background: #1a1f18; border-radius: 20px; padding: 2rem 1.5rem; border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
-.step-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--acid); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+.how-inner .section-tag { color: var(--coral); }
+.how-inner h2 { color: var(--canvas); }
+.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 3.5rem; }
+.step-card {
+  background: rgba(251,247,242,0.04);
+  border: 1px solid rgba(251,247,242,0.06);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.step-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--coral);
+  transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+}
 .step-card:hover::before { transform: scaleX(1); }
-.step-card:hover { border-color: rgba(184,255,60,0.15); transform: translateY(-6px); }
-.step-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(184,255,60,0.15); line-height: 1; margin-bottom: 1rem; }
-.step-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.02em; color: var(--paper); margin-bottom: 0.75rem; }
-.step-card p { font-size: 14px; color: rgba(240,237,230,0.45); line-height: 1.7; }
+.step-card:hover {
+  border-color: rgba(255, 90, 78, 0.22);
+  transform: translateY(-6px);
+  background: rgba(251,247,242,0.06);
+}
+.step-num {
+  font-size: 3.25rem; font-weight: 900;
+  color: rgba(255, 90, 78, 0.3);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+}
+.step-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--canvas);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+  line-height: 1.15;
+}
+.step-card p {
+  font-size: 14px;
+  color: rgba(251,247,242,0.55);
+  line-height: 1.65;
+}
 
+/* Audience */
 .audience-section { padding: 7rem 3rem; max-width: 1300px; margin: 0 auto; }
-.audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
-.audience-card { border-radius: 24px; padding: 2.5rem 2rem; position: relative; overflow: hidden; min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end; cursor: default; transition: transform 0.25s; }
-.audience-card:hover { transform: scale(1.02); }
-.card-local { background: var(--grass); } .card-backpacker { background: var(--rust); } .card-pro { background: var(--ink); }
-.card-badge { position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
-.card-big-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -65%); font-size: 5rem; opacity: 0.15; }
-.audience-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: white; letter-spacing: 0.02em; margin-bottom: 0.5rem; line-height: 1.1; }
-.audience-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+.audience-card {
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 2rem;
+  position: relative; overflow: hidden;
+  min-height: 300px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  cursor: default;
+  transition: transform 0.25s;
+  box-shadow: var(--shadow-md);
+}
+.audience-card:hover { transform: translateY(-4px); }
+.card-local { background: var(--sage); }
+.card-backpacker { background: var(--coral); }
+.card-pro { background: var(--ink); }
+.card-badge {
+  position: absolute; top: 1.5rem; left: 1.5rem;
+  background: rgba(251,247,242,0.2);
+  color: rgba(251,247,242,0.95);
+  font-size: 11px; font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+.card-big-icon {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -65%);
+  font-size: 5rem; opacity: 0.18;
+}
+.audience-card h3 {
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: var(--canvas);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  line-height: 1.05;
+}
+.audience-card p {
+  font-size: 14px;
+  color: rgba(251,247,242,0.75);
+  line-height: 1.6;
+}
 
-.global-row { margin-top: 2rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2rem 2.5rem; display: flex; align-items: center; gap: 3rem; }
+/* Global row */
+.global-row {
+  margin-top: 1.5rem;
+  background: var(--canvas-alt);
+  border-radius: var(--radius-xl);
+  padding: 2rem 2.5rem;
+  display: flex; align-items: center; gap: 3rem;
+}
 .global-text { flex: 1; }
-.global-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 0.01em; }
-.global-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+.global-text h3 {
+  font-size: 1.75rem; font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+.global-text p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
 .city-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.city-chip { background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 500; padding: 0.4rem 1rem; border-radius: 100px; display: flex; align-items: center; gap: 0.4rem; }
-.chip-flag { font-size: 14px; } .chip-soon { opacity: 0.4; }
+.city-chip {
+  background: var(--ink);
+  color: var(--canvas);
+  font-size: 12px; font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.chip-flag { font-size: 14px; }
+.chip-soon { opacity: 0.4; }
 
-.insta-section { background: var(--warm); padding: 5rem 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.insta-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.insta-handle { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-.insta-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.handle-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; }
-.handle-sub { font-size: 13px; color: var(--text-muted); }
-.insta-feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-.insta-post { aspect-ratio: 1; border-radius: 12px; overflow: hidden; position: relative; background: var(--card-bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
-.insta-post-inner { text-align: center; font-size: 2rem; opacity: 0.25; }
-.insta-coming { position: absolute; inset: 0; background: rgba(13,15,12,0.7); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; border-radius: 12px; }
-
-footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; color: rgba(240,237,230,0.3); font-size: 13px; }
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--paper); letter-spacing: 0.04em; }
-.footer-logo em { color: var(--acid); font-style: normal; }
+/* Footer */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(251,247,242,0.06);
+  padding: 2.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  color: rgba(251,247,242,0.45);
+  font-size: 13px;
+}
+.footer-logo { font-size: 1.5rem; color: var(--canvas); }
 .footer-links { display: flex; gap: 2rem; }
-.footer-links a { color: rgba(240,237,230,0.35); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--paper); }
+.footer-links a { color: rgba(251,247,242,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--canvas); }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-visual { height: 400px; order: -1; }
+  .hero { grid-template-columns: 1fr; padding: 8rem 1.5rem 4rem; }
+  .hero-visual { height: 500px; order: -1; }
   .why-grid { grid-template-columns: 1fr; gap: 3rem; }
   .steps-row { grid-template-columns: 1fr 1fr; }
   .audience-grid { grid-template-columns: 1fr; }
-  .insta-inner { grid-template-columns: 1fr; }
-  .global-row { flex-direction: column; gap: 1.5rem; }
+  .global-row { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
   nav { padding: 1rem 1.5rem; }
   .nav-right a { display: none; }
-  .hero { padding: 8rem 1.5rem 4rem; }
   footer { flex-direction: column; gap: 1rem; text-align: center; }
 }
 </style>
@@ -203,7 +502,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
 <div class="cursor" id="cursor"></div>
 
 <nav>
-  <div class="logo">run<em>klub</em></div>
+  <a href="/" class="logo wordmark"><span class="wordmark-run">run</span><span class="wordmark-klub">klub</span></a>
   <div class="nav-right">
     <a href="#why">Our mission</a>
     <a href="#how">How it works</a>
@@ -216,10 +515,10 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
       <span class="eyebrow-pill">🌿 Gold Coast · Launching Mid 2026</span>
     </div>
     <h1>
-      <span>Run</span>
-      <span class="line-green">Together.</span>
-      <span class="line-rust">Live</span>
-      <span>Better.</span>
+      <span class="hl-line">Run</span>
+      <span class="hl-line hl-em">Together.</span>
+      <span class="hl-line">Live</span>
+      <span class="hl-line">Better.</span>
     </h1>
     <div class="hero-banner">
       Runklub connects you to local run clubs and communities that improve your mental and physical wellbeing. Drop a pin. Find your people. Show up.
@@ -227,12 +526,11 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   </div>
 
   <div class="hero-visual">
-    <div class="hero-bg-circle"></div>
     <div class="phone-mockup">
       <div class="phone-inner">
         <div class="phone-status"><span>9:41</span><span>●●● 100%</span></div>
         <div class="phone-content">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#f0ede6;letter-spacing:0.04em;margin-bottom:0.75rem;">Klubs near you</div>
+          <div class="phone-title">Klubs near you</div>
           <div class="phone-map-area">
             <div class="map-lines"></div>
             <div class="map-road road-h road-1"></div>
@@ -243,31 +541,32 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
             <div class="pin pin-b"><div class="pin-pulse" style="animation-delay:0.8s"></div><div class="pin-dot"></div></div>
             <div class="pin pin-c"><div class="pin-pulse" style="animation-delay:1.6s"></div><div class="pin-dot"></div></div>
           </div>
-          <div class="nearby-label">3 klubs within 2km</div>
-          <div class="klub-row">
-            <div class="klub-avatar k-green">🌅</div>
-            <div class="klub-details">
-              <div class="klub-name">Surfers Paradise Dawn Klub</div>
-              <div class="klub-sub">0.6 km · Tue & Fri 5:30am</div>
+          <div class="phone-overline">3 klubs within 2km</div>
+          <div class="event-row">
+            <div class="date-badge"><span class="date-dow">TUE</span><span class="date-day">22</span></div>
+            <div class="event-body">
+              <div class="event-title">Surfers Paradise Dawn Klub</div>
+              <div class="event-meta">0.6 km · Tue &amp; Fri 5:30am</div>
             </div>
-            <div class="klub-chip chip-open">Open</div>
+            <div class="going-chip"><span class="going-dot"></span>Open</div>
           </div>
-          <div class="klub-row">
-            <div class="klub-avatar k-rust">⚡</div>
-            <div class="klub-details">
-              <div class="klub-name">Broadbeach Intervals</div>
-              <div class="klub-sub">1.1 km · Wed 6pm</div>
+          <div class="event-row">
+            <div class="date-badge"><span class="date-dow">WED</span><span class="date-day">23</span></div>
+            <div class="event-body">
+              <div class="event-title">Broadbeach Intervals</div>
+              <div class="event-meta">1.1 km · Wed 6pm</div>
             </div>
-            <div class="klub-chip chip-open">8 spots</div>
+            <div class="going-chip"><span class="going-dot"></span>8 spots</div>
           </div>
-          <div class="klub-row">
-            <div class="klub-avatar k-mist">🏖️</div>
-            <div class="klub-details">
-              <div class="klub-name">GC Coastal Long Run</div>
-              <div class="klub-sub">1.8 km · Sun 7am</div>
+          <div class="event-row">
+            <div class="date-badge"><span class="date-dow">SUN</span><span class="date-day">27</span></div>
+            <div class="event-body">
+              <div class="event-title">GC Coastal Long Run</div>
+              <div class="event-meta">1.8 km · Sun 7am</div>
             </div>
-            <div class="klub-chip chip-full">Full</div>
+            <div class="going-chip muted"><span class="going-dot"></span>Full</div>
           </div>
+          <button class="phone-cta">Join next run →</button>
         </div>
       </div>
     </div>
@@ -309,15 +608,14 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
       <p class="body-text">Loneliness is the defining health crisis of our time. <strong>Running alone fixes your body. Running together fixes your mind.</strong></p>
       <p class="body-text">We built Runklub because the hardest part of starting — or staying consistent — isn't fitness. It's finding people. The right people. At the right time. Near you.</p>
       <p class="body-text">Every run club you join is a community that shows up for you. A reason to get out of bed at 5:30am. A group that notices when you're not there. <strong>That's what we're building — not just an app, but infrastructure for human connection through sport.</strong></p>
-
     </div>
     <div class="manifesto-block">
       <blockquote>"The best technology disappears into the background and leaves only the human moment. We want Runklub to be the thing you never notice — and the community you never forget."</blockquote>
       <div class="manifesto-pillars">
-        <div class="pillar"><div class="pillar-icon">🧠</div><div><strong style="color:var(--paper);">Mental wellbeing first.</strong> Group exercise reduces cortisol and builds the social bonds that buffer stress and depression.</div></div>
-        <div class="pillar"><div class="pillar-icon">💪</div><div><strong style="color:var(--paper);">Physical accountability.</strong> Community is the most powerful training tool ever built. We're just the map.</div></div>
-        <div class="pillar"><div class="pillar-icon">🌍</div><div><strong style="color:var(--paper);">Built to travel.</strong> Whether you're local or backpacking through Europe — your Runklub community moves with you.</div></div>
-        <div class="pillar"><div class="pillar-icon">🔗</div><div><strong style="color:var(--paper);">Network as moat.</strong> The community we build together is something no algorithm can replicate.</div></div>
+        <div class="pillar"><div class="pillar-icon">🧠</div><div><strong>Mental wellbeing first.</strong> Group exercise reduces cortisol and builds the social bonds that buffer stress and depression.</div></div>
+        <div class="pillar"><div class="pillar-icon">💪</div><div><strong>Physical accountability.</strong> Community is the most powerful training tool ever built. We're just the map.</div></div>
+        <div class="pillar"><div class="pillar-icon">🌍</div><div><strong>Built to travel.</strong> Whether you're local or backpacking through Europe — your Runklub community moves with you.</div></div>
+        <div class="pillar"><div class="pillar-icon">🔗</div><div><strong>Network as moat.</strong> The community we build together is something no algorithm can replicate.</div></div>
       </div>
     </div>
   </div>
@@ -326,7 +624,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
 <section class="how-section" id="how">
   <div class="how-inner">
     <span class="section-tag">How it works</span>
-    <h2 style="color:var(--paper);">Simple.<br>By design.</h2>
+    <h2>Simple.<br>By design.</h2>
     <div class="steps-row">
       <div class="step-card"><div class="step-num">01</div><h3>Drop your pin</h3><p>Open Runklub, share your location, and instantly see every active club and group run near you — sorted by distance, pace, and schedule.</p></div>
       <div class="step-card"><div class="step-num">02</div><h3>Find your pace</h3><p>Filter by distance, speed, vibe, or time of day. Beginner-friendly 5km socials. Fast track sessions. Trail crews. There's a klub for every runner.</p></div>
@@ -340,8 +638,8 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   <span class="section-tag">Who it's for</span>
   <h2>Everyone who runs.<br>Or wants to start.</h2>
   <div class="audience-grid">
-    <div class="audience-card card-local"><span class="card-badge">🏠 Locals</span><div class="card-big-icon">🌊</div><h3>Gold Coast<br>& Brisbane runners</h3><p>Find the morning crew at Mermaid Beach. The Sunday trail gang at Springbrook. The Tuesday intervals on the Coast.</p></div>
-    <div class="audience-card card-backpacker"><span class="card-badge">✈️ Travellers</span><div class="card-big-icon">🎒</div><h3>Backpackers<br>& nomads</h3><p>Land in a new city and find your run crew the same day. Runklub is your instant social network — everywhere you go.</p></div>
+    <div class="audience-card card-local"><span class="card-badge">🏠 Locals</span><div class="card-big-icon">🌊</div><h3>Gold Coast<br>&amp; Brisbane runners</h3><p>Find the morning crew at Mermaid Beach. The Sunday trail gang at Springbrook. The Tuesday intervals on the Coast.</p></div>
+    <div class="audience-card card-backpacker"><span class="card-badge">✈️ Travellers</span><div class="card-big-icon">🎒</div><h3>Backpackers<br>&amp; nomads</h3><p>Land in a new city and find your run crew the same day. Runklub is your instant social network — everywhere you go.</p></div>
     <div class="audience-card card-pro"><span class="card-badge">🏅 Athletes</span><div class="card-big-icon">⚡</div><h3>Serious<br>runners</h3><p>Structured speed sessions, marathon training groups, and performance-focused clubs for those chasing real times.</p></div>
   </div>
   <div class="global-row">
@@ -357,13 +655,11 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   </div>
 </section>
 
-
-
 <footer>
-  <div class="footer-logo">run<em>klub</em></div>
+  <a href="/" class="footer-logo wordmark"><span class="wordmark-run">run</span><span class="wordmark-klub">klub</span></a>
   <div style="text-align:center;">
     Built on the Gold Coast, Australia &nbsp;·&nbsp; runklub.run<br>
-    <span style="font-size:11px;opacity:0.4;">Connecting runners. Building community. Improving lives.</span>
+    <span style="font-size:11px;opacity:0.6;">Connecting runners. Building community. Improving lives.</span>
   </div>
   <div class="footer-links">
     <a href="#why">Mission</a>
@@ -377,13 +673,12 @@ document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
 });
-document.querySelectorAll('a, button, .audience-card, .step-card, .feature-card').forEach(el => {
+document.querySelectorAll('a, button, .audience-card, .step-card').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('big'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
 });
 
-// Scroll reveal
-const reveals = document.querySelectorAll('.step-card, .stat-block, .audience-card, .pillar');
+const reveals = document.querySelectorAll('.step-card, .audience-card, .pillar');
 const io = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {

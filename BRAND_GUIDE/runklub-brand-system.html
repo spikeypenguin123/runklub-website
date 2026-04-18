@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runklub — Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canvas: #FBF7F2;
+    --canvas-alt: #F3EDE4;
+    --surface: #FFFFFF;
+    --coral: #FF5A4E;
+    --coral-deep: #E8422F;
+    --coral-soft: #FFD9D3;
+    --gold: #E8A62C;
+    --gold-soft: #F7E4B8;
+    --ink: #1A1D24;
+    --ink-soft: #4A4E57;
+    --ink-muted: #8A8F99;
+    --sage: #4F8A6E;
+    --sage-soft: #D4E5D9;
+    --sunset: linear-gradient(135deg, #FF5A4E 0%, #FF8A3D 45%, #E8A62C 100%);
+    --sunset-soft: linear-gradient(135deg, #FFD9D3 0%, #FFE4C9 50%, #F7E4B8 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--canvas);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 4rem 2rem 6rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute;
+    top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    background: var(--sunset);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    z-index: 0;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; width: 100%; }
+  .eyebrow {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--ink-soft); font-weight: 600; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 900;
+    background: var(--sunset);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 2rem;
+  }
+  .toc { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+  .toc a {
+    padding: 0.6rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid rgba(26, 29, 36, 0.08);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.875rem; font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .toc a:hover { background: var(--ink); color: var(--canvas); transform: translateY(-1px); }
+
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    line-height: 1.05;
+  }
+  .section-intro {
+    color: var(--ink-soft);
+    font-size: 1.0625rem;
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+
+  /* WORDMARK */
+  .wordmark-showcase {
+    background: var(--ink);
+    color: var(--canvas);
+    padding: 5rem 2rem;
+    margin: 3rem 0;
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .wordmark-showcase::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 120%, rgba(255, 90, 78, 0.3), transparent 50%),
+                radial-gradient(circle at 70% -20%, rgba(232, 166, 44, 0.2), transparent 50%);
+  }
+  .wordmark {
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    letter-spacing: -0.035em;
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+  }
+  .wordmark .run { font-weight: 400; font-style: normal; }
+  .wordmark .klub {
+    font-weight: 900; font-style: italic;
+    background: var(--sunset);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .wordmark-variants {
+    display: flex; justify-content: center; gap: 3rem;
+    flex-wrap: wrap; margin-top: 3rem; position: relative;
+  }
+  .wm-variant { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .wm-variant .label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em;
+    color: rgba(251, 247, 242, 0.5); font-weight: 600; font-style: normal;
+  }
+  .wm-sm { font-size: 2rem; }
+  .wm-mono .klub {
+    background: none; -webkit-text-fill-color: var(--canvas); color: var(--canvas);
+  }
+  .wm-solid .klub {
+    background: none; -webkit-text-fill-color: var(--coral); color: var(--coral);
+  }
+
+  /* APP ICON showcase */
+  .icon-showcase {
+    display: grid; grid-template-columns: auto 1fr; gap: 3rem;
+    align-items: center; padding: 2.5rem;
+    background: var(--surface); border-radius: 24px;
+    margin-top: 2rem; border: 1px solid rgba(26, 29, 36, 0.06);
+  }
+  @media (max-width: 720px) { .icon-showcase { grid-template-columns: 1fr; } }
+  .icon-master { width: 220px; height: 220px; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.25); border-radius: 48px; overflow: hidden; }
+  .icon-row-small { display: flex; gap: 1.5rem; align-items: flex-end; margin-top: 1rem; }
+  .icon-sm { box-shadow: 0 10px 20px -8px rgba(0,0,0,0.15); }
+  .icon-sm-1 { width: 80px; height: 80px; border-radius: 18px; overflow: hidden; }
+  .icon-sm-2 { width: 56px; height: 56px; border-radius: 13px; overflow: hidden; }
+  .icon-sm-3 { width: 40px; height: 40px; border-radius: 9px; overflow: hidden; }
+
+  /* PALETTE */
+  .palette-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+  }
+  .swatch {
+    background: var(--surface); border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(26, 29, 36, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .swatch:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(26, 29, 36, 0.15); }
+  .swatch-color {
+    height: 160px; display: flex; align-items: flex-end;
+    padding: 1.25rem; color: white;
+    font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em;
+  }
+  .swatch-coral { background: var(--coral); }
+  .swatch-gold { background: var(--gold); }
+  .swatch-ink { background: var(--ink); }
+  .swatch-sage { background: var(--sage); }
+  .swatch-canvas { background: var(--canvas); color: var(--ink); border-bottom: 1px solid rgba(26, 29, 36, 0.08); }
+  .swatch-gradient { background: var(--sunset); }
+  .swatch-body { padding: 1.25rem; }
+  .swatch-role {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .swatch-meaning { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.45; margin-bottom: 0.75rem; }
+  .swatch-hex {
+    font-family: 'SF Mono', Menlo, monospace; font-size: 0.8rem;
+    color: var(--ink); background: var(--canvas-alt);
+    padding: 0.35rem 0.6rem; border-radius: 6px; display: inline-block;
+  }
+
+  /* TYPOGRAPHY */
+  .type-scale {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid rgba(26, 29, 36, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .type-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    align-items: baseline;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(26, 29, 36, 0.06);
+  }
+  .type-item:last-child { border-bottom: none; padding-bottom: 0; }
+  @media (max-width: 720px) {
+    .type-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+  .type-spec {
+    display: flex; flex-direction: column; gap: 0.25rem;
+  }
+  .type-spec .type-name {
+    font-weight: 700; font-size: 0.95rem; color: var(--ink);
+  }
+  .type-spec .type-meta {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.75rem; color: var(--ink-muted);
+  }
+  .type-sample-display-xl { font-size: 56px; font-weight: 900; letter-spacing: -2px; line-height: 0.95; }
+  .type-sample-display-l { font-size: 40px; font-weight: 900; letter-spacing: -1.2px; line-height: 1.05; }
+  .type-sample-display-m { font-size: 28px; font-weight: 800; letter-spacing: -0.7px; line-height: 1.1; }
+  .type-sample-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  .type-sample-body-l { font-size: 16px; font-weight: 400; line-height: 1.5; }
+  .type-sample-body { font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--ink-soft); }
+  .type-sample-label { font-size: 13px; font-weight: 600; }
+  .type-sample-caption { font-size: 12px; font-weight: 500; letter-spacing: 0.25px; color: var(--ink-muted); }
+  .type-sample-overline { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-muted); }
+
+  /* GRADIENT */
+  .gradient-showcase {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+  }
+  .g-card {
+    border-radius: 20px; padding: 2rem; min-height: 200px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .g-card .g-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em;
+    font-weight: 600; opacity: 0.7;
+  }
+  .g-card .g-title {
+    font-weight: 900; font-size: 1.5rem; letter-spacing: -0.025em; line-height: 1.1;
+  }
+  .g-full { background: var(--sunset); color: white; }
+  .g-full .g-label { color: rgba(255,255,255,0.85); }
+  .g-soft { background: var(--sunset-soft); color: var(--ink); }
+  .g-border {
+    background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                var(--sunset) border-box;
+    border: 2px solid transparent;
+  }
+  .g-text-only { background: var(--ink); }
+  .g-text-only .g-title {
+    background: var(--sunset);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .g-text-only .g-label { color: rgba(251, 247, 242, 0.6); }
+
+  /* APP MOCKUPS */
+  .phones {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem; justify-items: center; margin-top: 2rem;
+  }
+  .phone {
+    width: 340px; height: 720px;
+    background: var(--canvas);
+    border-radius: 42px;
+    border: 10px solid #0a0a0a;
+    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.35), 0 20px 40px -20px rgba(0, 0, 0, 0.15);
+    overflow: hidden; position: relative;
+    font-size: 13px;
+  }
+  .phone::before {
+    content: ''; position: absolute;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 28px;
+    background: #0a0a0a; border-radius: 20px; z-index: 10;
+  }
+  .status-bar {
+    height: 48px; padding: 0 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 14px; color: var(--ink);
+  }
+  .phone-title {
+    text-align: center; padding: 8px 0 20px;
+    font-weight: 900; font-size: 20px; letter-spacing: -0.02em;
+  }
+  .event-card-hero {
+    margin: 0 16px; background: var(--surface); border-radius: 18px;
+    padding: 16px; border: 1px solid rgba(26, 29, 36, 0.06);
+  }
+  .ec-header { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .ec-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--sunset);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 20px;
+  }
+  .ec-title { font-weight: 800; font-size: 18px; letter-spacing: -0.015em; }
+  .ec-date { color: var(--coral); font-weight: 600; font-size: 12px; margin-top: 2px; }
+  .ec-stats { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--canvas); border-radius: 12px; overflow: hidden; }
+  .ec-stat { padding: 12px 8px; text-align: center; }
+  .ec-stat + .ec-stat { border-left: 1px solid rgba(26, 29, 36, 0.06); }
+  .ec-stat-value { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
+  .ec-stat-label { font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; font-weight: 600; }
+  .ec-section { padding: 20px 16px 4px; }
+  .ec-section h4 { font-weight: 800; font-size: 15px; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .ec-section p { color: var(--ink-soft); font-size: 13px; }
+  .organiser-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--sage-soft); padding: 8px 14px 8px 8px;
+    border-radius: 999px; margin-top: 8px;
+  }
+  .org-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--sage); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px;
+  }
+  .org-name { font-weight: 600; font-size: 12px; color: var(--ink); }
+  .org-role { font-size: 10px; color: var(--ink-soft); }
+  .map-preview {
+    margin: 14px 16px 0; height: 90px;
+    background: linear-gradient(135deg, #D8E9DC 0%, #C8DDD8 100%);
+    border-radius: 12px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .map-pin {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--coral); border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(255, 90, 78, 0.4);
+  }
+  .cta-primary {
+    margin: 16px; padding: 16px;
+    background: var(--sunset); color: white;
+    border-radius: 14px; text-align: center;
+    font-weight: 700; font-size: 15px;
+    box-shadow: 0 8px 20px -8px rgba(255, 90, 78, 0.5);
+  }
+  .tab-switcher {
+    margin: 0 16px 16px; background: var(--canvas-alt);
+    padding: 4px; border-radius: 999px; display: flex;
+  }
+  .tab {
+    flex: 1; padding: 8px; text-align: center;
+    font-size: 13px; font-weight: 600;
+    border-radius: 999px; color: var(--ink-soft);
+  }
+  .tab.active {
+    background: var(--surface); color: var(--ink);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .event-item {
+    margin: 0 16px 12px; background: var(--surface);
+    border-radius: 16px; padding: 12px;
+    display: flex; gap: 12px;
+    border: 1px solid rgba(26, 29, 36, 0.06);
+  }
+  .ev-date {
+    width: 56px; flex-shrink: 0;
+    background: var(--sunset-soft);
+    border-radius: 10px; padding: 8px 4px; text-align: center;
+  }
+  .ev-date .dow { font-size: 10px; font-weight: 700; color: var(--coral-deep); letter-spacing: 0.1em; }
+  .ev-date .day { font-weight: 900; font-size: 22px; line-height: 1; letter-spacing: -0.02em; margin: 2px 0; }
+  .ev-date .mon { font-size: 10px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.1em; }
+  .ev-body { flex: 1; min-width: 0; }
+  .ev-title { font-weight: 800; font-size: 15px; margin-bottom: 4px; letter-spacing: -0.015em; }
+  .ev-meta { display: grid; grid-template-columns: auto auto; gap: 4px 12px; font-size: 11px; color: var(--ink-soft); }
+  .ev-meta-item { display: flex; align-items: center; gap: 4px; }
+  .ev-meta-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-muted); }
+  .going-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--sage-soft); color: var(--sage);
+    padding: 2px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 700;
+    margin-top: 6px;
+  }
+  .tab-bar {
+    position: absolute; bottom: 16px; left: 16px; right: 16px;
+    background: var(--surface); border-radius: 28px;
+    padding: 10px 20px;
+    display: flex; justify-content: space-around;
+    box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(26, 29, 36, 0.04);
+  }
+  .tb-item {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 4px 12px; color: var(--ink-muted);
+    font-size: 10px; font-weight: 600;
+  }
+  .tb-item.active { color: var(--coral); }
+  .tb-item .ic {
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .tb-item.active .ic { background: var(--coral-soft); border-radius: 8px; }
+
+  /* NOTIFICATION */
+  .notif-preview {
+    max-width: 400px; margin: 2rem auto 0;
+    background: rgba(26, 29, 36, 0.75);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px; padding: 14px 16px;
+    display: flex; gap: 12px; color: white;
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.3);
+  }
+  .notif-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    background: var(--sunset);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .notif-body { flex: 1; min-width: 0; }
+  .notif-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+  .notif-text { font-size: 13px; color: rgba(255, 255, 255, 0.8); }
+  .notif-time { font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-left: auto; }
+
+  /* IG */
+  .ig-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 8px; max-width: 520px; margin-top: 2rem;
+  }
+  .ig-post {
+    aspect-ratio: 1; border-radius: 12px; padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .ig-post .ig-label {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em;
+    font-weight: 700; opacity: 0.7;
+  }
+  .ig-post .ig-head {
+    font-weight: 900; font-size: 20px; line-height: 1; letter-spacing: -0.025em;
+  }
+  .ig-post .ig-foot { font-size: 10px; font-weight: 600; opacity: 0.8; }
+  .ig-1 { background: var(--sunset); color: white; }
+  .ig-2 { background: var(--ink); color: var(--canvas); }
+  .ig-2 .ig-head em { font-style: italic; background: var(--sunset); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .ig-3 { background: var(--canvas-alt); color: var(--ink); }
+  .ig-4 { background: var(--sage); color: white; }
+  .ig-5 { background: var(--coral-soft); color: var(--coral-deep); }
+  .ig-6 { background: var(--gold-soft); color: var(--ink); }
+  .ig-7 { background: var(--sunset-soft); color: var(--ink); }
+  .ig-8 { background: var(--sage-soft); color: var(--sage); }
+  .ig-9 { background: var(--ink); color: var(--canvas); border: 2px solid var(--gold); }
+
+  /* PRINCIPLES */
+  .principles {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;
+  }
+  .principle {
+    background: var(--surface); border-radius: 18px; padding: 1.75rem;
+    border: 1px solid rgba(26, 29, 36, 0.06);
+  }
+  .principle-num {
+    font-weight: 900; font-style: italic;
+    font-size: 2.5rem; line-height: 1;
+    background: var(--sunset);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 0.75rem;
+  }
+  .principle h4 { font-weight: 800; font-size: 1.15rem; margin-bottom: 0.5rem; letter-spacing: -0.015em; }
+  .principle p { color: var(--ink-soft); font-size: 0.925rem; line-height: 1.5; }
+
+  footer {
+    padding: 4rem 2rem 3rem; text-align: center;
+    color: var(--ink-muted); font-size: 0.875rem;
+    border-top: 1px solid rgba(26, 29, 36, 0.06);
+  }
+  footer .logo { font-size: 1.5rem; color: var(--ink); margin-bottom: 0.5rem; font-weight: 400; }
+  footer .logo em { font-style: italic; font-weight: 900; color: var(--coral); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Brand System · v1 · April 2026</div>
+    <h1>A system<br>for <em>dawn runs</em>.</h1>
+    <p>Runklub connects people to local run clubs — socially, warmly, built to travel. This is the visual system that holds that promise together across every surface.</p>
+    <div class="toc">
+      <a href="#wordmark">Wordmark</a>
+      <a href="#icon">App icon</a>
+      <a href="#palette">Palette</a>
+      <a href="#type">Typography</a>
+      <a href="#gradient">Signature</a>
+      <a href="#app">App</a>
+      <a href="#social">Social</a>
+      <a href="#principles">Principles</a>
+    </div>
+  </div>
+</section>
+
+<!-- WORDMARK -->
+<section id="wordmark">
+  <div class="container">
+    <div class="section-label">01 · Wordmark</div>
+    <h2 class="section-title">The name, set in motion.</h2>
+    <p class="section-intro">DM Sans italic on "klub" gives the wordmark its forward lean — movement, personality, a sense of running into the frame. The upright "run" grounds it. The sunset gradient on "klub" is the brand's signature flourish, reserved for hero moments.</p>
+
+    <div class="wordmark-showcase">
+      <div class="wordmark"><span class="run">run</span><span class="klub">klub</span></div>
+      <div class="wordmark-variants">
+        <div class="wm-variant">
+          <div class="wordmark wm-sm"><span class="run">run</span><span class="klub">klub</span></div>
+          <div class="label">Primary · Sunset</div>
+        </div>
+        <div class="wm-variant">
+          <div class="wordmark wm-sm wm-solid"><span class="run">run</span><span class="klub">klub</span></div>
+          <div class="label">Solid · Coral</div>
+        </div>
+        <div class="wm-variant">
+          <div class="wordmark wm-sm wm-mono"><span class="run">run</span><span class="klub">klub</span></div>
+          <div class="label">Mono · Canvas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP ICON -->
+<section id="icon">
+  <div class="container">
+    <div class="section-label">02 · App icon</div>
+    <h2 class="section-title">The wordmark, stacked.</h2>
+    <p class="section-intro">1024 × 1024. "run" in ink, top half. "klub" in sunset italic, bottom half. Warm canvas background. The off-white makes it pop on every home screen — it doesn't fight for attention, it earns it.</p>
+
+    <div class="icon-showcase">
+      <div class="icon-master">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset-icon-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset-icon-1)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div>
+        <div style="font-weight: 800; font-size: 1.25rem; margin-bottom: 0.5rem; letter-spacing: -0.015em;">Built for every home screen.</div>
+        <div style="color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; max-width: 480px;">The stacked lockup holds up at any size — the bold "run" anchors recognition, while "klub" in italic carries the motion. Master SVG is delivered alongside this doc.</div>
+
+        <div class="icon-row-small">
+          <div class="icon-sm icon-sm-1">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+              <defs><linearGradient id="sunset-icon-2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF5A4E"/><stop offset="45%" stop-color="#FF8A3D"/><stop offset="100%" stop-color="#E8A62C"/></linearGradient></defs>
+              <rect width="1024" height="1024" fill="#FBF7F2"/>
+              <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+              <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset-icon-2)" text-anchor="middle" letter-spacing="-20">klub</text>
+            </svg>
+          </div>
+          <div class="icon-sm icon-sm-2">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+              <defs><linearGradient id="sunset-icon-3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF5A4E"/><stop offset="45%" stop-color="#FF8A3D"/><stop offset="100%" stop-color="#E8A62C"/></linearGradient></defs>
+              <rect width="1024" height="1024" fill="#FBF7F2"/>
+              <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+              <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset-icon-3)" text-anchor="middle" letter-spacing="-20">klub</text>
+            </svg>
+          </div>
+          <div class="icon-sm icon-sm-3">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+              <defs><linearGradient id="sunset-icon-4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF5A4E"/><stop offset="45%" stop-color="#FF8A3D"/><stop offset="100%" stop-color="#E8A62C"/></linearGradient></defs>
+              <rect width="1024" height="1024" fill="#FBF7F2"/>
+              <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+              <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset-icon-4)" text-anchor="middle" letter-spacing="-20">klub</text>
+            </svg>
+          </div>
+        </div>
+        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--ink-muted); font-weight: 600; margin-top: 1rem;">180 · 120 · 80 — readable at every size</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PALETTE -->
+<section id="palette">
+  <div class="container">
+    <div class="section-label">03 · Palette</div>
+    <h2 class="section-title">Colour as language.</h2>
+    <p class="section-intro">Every colour does a job. Coral is always action. Gold is always an accent. Sage is always social. Ink is always structure. The gradient is reserved — it's a moment, not a mood.</p>
+
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-color swatch-coral">Coral</div>
+        <div class="swatch-body">
+          <div class="swatch-role">Primary · Action</div>
+          <div class="swatch-meaning">Every CTA, every "yes," every moment of forward motion. Warm enough to feel social, bold enough to feel sporty.</div>
+          <div class="swatch-hex">#FF5A4E</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color swatch-gold">Gold</div>
+        <div class="swatch-body">
+          <div class="swatch-role">Accent · Highlight</div>
+          <div class="swatch-meaning">Badges, streaks, premium moments, notification dots. A nod to the dawn sun — never used for primary actions.</div>
+          <div class="swatch-hex">#E8A62C</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color swatch-sage">Sage</div>
+        <div class="swatch-body">
+          <div class="swatch-role">Social · Community</div>
+          <div class="swatch-meaning">People counts, organiser chips, club memberships, "going" states. Where the community shows up in the UI.</div>
+          <div class="swatch-hex">#4F8A6E</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color swatch-ink">Ink</div>
+        <div class="swatch-body">
+          <div class="swatch-role">Structure · Text</div>
+          <div class="swatch-meaning">Primary text, tab bars, dark surfaces. Not pure black — warm enough to live next to the canvas without clashing.</div>
+          <div class="swatch-hex">#1A1D24</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color swatch-canvas">Canvas</div>
+        <div class="swatch-body">
+          <div class="swatch-role">Background · Base</div>
+          <div class="swatch-meaning">Warm off-white for pre-dawn eyes. Every screen sits on this — never pure white, never grey.</div>
+          <div class="swatch-hex">#FBF7F2</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color swatch-gradient">Sunset</div>
+        <div class="swatch-body">
+          <div class="swatch-role">Signature · Gradient</div>
+          <div class="swatch-meaning">Coral to gold. The brand's soul, reserved for hero moments: logo, splash, empty states, celebrations.</div>
+          <div class="swatch-hex">135° · #FF5A4E → #E8A62C</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="type">
+  <div class="container">
+    <div class="section-label">04 · Typography</div>
+    <h2 class="section-title">One font, doing everything.</h2>
+    <p class="section-intro">DM Sans handles the whole system — from the 72px wordmark down to the 11px overline. Friendly geometric, with a true italic that gives "klub" its personality. No second font needed.</p>
+
+    <div class="type-scale">
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Display XL</div>
+          <div class="type-meta">900 · 56px · -2 tracking</div>
+        </div>
+        <div class="type-sample-display-xl">Run together.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Display L</div>
+          <div class="type-meta">900 · 40px · -1.2 tracking</div>
+        </div>
+        <div class="type-sample-display-l">A klub for every runner.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Display M</div>
+          <div class="type-meta">800 · 28px</div>
+        </div>
+        <div class="type-sample-display-m">Find your people.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Title</div>
+          <div class="type-meta">700 · 18px</div>
+        </div>
+        <div class="type-sample-title">Saturday long run</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Body L</div>
+          <div class="type-meta">400 · 16px</div>
+        </div>
+        <div class="type-sample-body-l">Easy social pace along the coast. Coffee after.</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Body</div>
+          <div class="type-meta">400 · 14px</div>
+        </div>
+        <div class="type-sample-body">4:50/km · 21km · 7:00am · Kurrawa Surf Club, Broadbeach</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Label</div>
+          <div class="type-meta">600 · 13px</div>
+        </div>
+        <div class="type-sample-label">Join Run</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Caption</div>
+          <div class="type-meta">500 · 12px</div>
+        </div>
+        <div class="type-sample-caption">Sat 18 Apr · 5:30am · 0.6km from you</div>
+      </div>
+      <div class="type-item">
+        <div class="type-spec">
+          <div class="type-name">Overline</div>
+          <div class="type-meta">600 · 11px · uppercase</div>
+        </div>
+        <div class="type-sample-overline">Klubs near you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRADIENT -->
+<section id="gradient">
+  <div class="container">
+    <div class="section-label">05 · Signature</div>
+    <h2 class="section-title">The sunset, used sparingly.</h2>
+    <p class="section-intro">The gradient is reserved. Use it for hero moments — the logo, app icon, splash screen, onboarding, big CTAs, celebration states. Never as a background for text-heavy content, never on small UI chrome. Restraint is what makes it mean something.</p>
+
+    <div class="gradient-showcase">
+      <div class="g-card g-full">
+        <div class="g-label">Hero · Full</div>
+        <div class="g-title">Big moments.<br>Splash, CTAs.</div>
+      </div>
+      <div class="g-card g-soft">
+        <div class="g-label">Soft · Pastel</div>
+        <div class="g-title">Date badges,<br>empty states.</div>
+      </div>
+      <div class="g-card g-border">
+        <div class="g-label">Border · Frame</div>
+        <div class="g-title">Avatars,<br>selected states.</div>
+      </div>
+      <div class="g-card g-text-only" style="color: white;">
+        <div class="g-label">Text · Accent</div>
+        <div class="g-title">Wordmark,<br>headlines.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem; padding: 1.5rem 1.75rem; background: var(--surface); border-radius: 16px; border-left: 4px solid var(--coral);">
+      <div style="font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem; letter-spacing: -0.015em;">The rule of three</div>
+      <div style="color: var(--ink-soft); font-size: 0.95rem;">Per screen: no more than three surfaces using the gradient. If it's everywhere, it's nowhere.</div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="app">
+  <div class="container">
+    <div class="section-label">06 · Product</div>
+    <h2 class="section-title">The system, applied.</h2>
+    <p class="section-intro">Your current screens, re-skinned with the brand system. Same information architecture — new visual language.</p>
+
+    <div class="phones">
+      <div class="phone">
+        <div class="status-bar">
+          <span>10:33</span>
+          <span style="font-family: monospace;">●●●</span>
+        </div>
+        <div class="phone-title">Event</div>
+        <div class="event-card-hero">
+          <div class="ec-header">
+            <div class="ec-icon">🌅</div>
+            <div>
+              <div class="ec-title">Dawn Patrol</div>
+              <div class="ec-date">Sat 18 Apr · 5:30am</div>
+            </div>
+          </div>
+          <div class="ec-stats">
+            <div class="ec-stat">
+              <div class="ec-stat-value">5:20/km</div>
+              <div class="ec-stat-label">Pace</div>
+            </div>
+            <div class="ec-stat">
+              <div class="ec-stat-value">40 min</div>
+              <div class="ec-stat-label">Duration</div>
+            </div>
+            <div class="ec-stat">
+              <div class="ec-stat-value" style="color: var(--sage);">3</div>
+              <div class="ec-stat-label">Going</div>
+            </div>
+          </div>
+        </div>
+        <div class="ec-section">
+          <h4>Taffy's</h4>
+          <p>Easy social pace along the coast. Coffee after.</p>
+        </div>
+        <div class="ec-section">
+          <h4>Organiser</h4>
+          <div class="organiser-chip">
+            <div class="org-avatar">T</div>
+            <div>
+              <div class="org-name">Tom</div>
+              <div class="org-role">Event Creator</div>
+            </div>
+          </div>
+        </div>
+        <div class="map-preview">
+          <div class="map-pin"></div>
+        </div>
+        <div class="cta-primary">Join Run</div>
+      </div>
+
+      <div class="phone">
+        <div class="status-bar">
+          <span>10:35</span>
+          <span style="font-family: monospace;">●●●</span>
+        </div>
+        <div class="phone-title">Events & Klubs</div>
+        <div class="tab-switcher">
+          <div class="tab active">Events</div>
+          <div class="tab">Klubs</div>
+        </div>
+        <div class="event-item">
+          <div class="ev-date">
+            <div class="dow">SAT</div>
+            <div class="day">18</div>
+            <div class="mon">APR</div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-title">Saturday long run</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><span class="dot"></span>4:50/km</div>
+              <div class="ev-meta-item"><span class="dot"></span>21km</div>
+              <div class="ev-meta-item"><span class="dot"></span>7:00am</div>
+              <div class="ev-meta-item"><span class="dot"></span>Kurrawa</div>
+            </div>
+            <div class="going-chip">● 4 going</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="ev-date">
+            <div class="dow">SAT</div>
+            <div class="day">18</div>
+            <div class="mon">APR</div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-title">Dawn Patrol</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><span class="dot"></span>5:20/km</div>
+              <div class="ev-meta-item"><span class="dot"></span>40 min</div>
+              <div class="ev-meta-item"><span class="dot"></span>5:30am</div>
+              <div class="ev-meta-item"><span class="dot"></span>Golden Gate</div>
+            </div>
+            <div class="going-chip">● 3 going</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="ev-date">
+            <div class="dow">SUN</div>
+            <div class="day">19</div>
+            <div class="mon">APR</div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-title">Intervals on the track</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><span class="dot"></span>3:40/km</div>
+              <div class="ev-meta-item"><span class="dot"></span>8km</div>
+              <div class="ev-meta-item"><span class="dot"></span>6:00pm</div>
+              <div class="ev-meta-item"><span class="dot"></span>Griffith</div>
+            </div>
+            <div class="going-chip">● 8 going</div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tb-item"><div class="ic">🗺</div><div>Discover</div></div>
+          <div class="tb-item active"><div class="ic">📅</div><div>Events</div></div>
+          <div class="tb-item"><div class="ic">🔔</div><div>Alerts</div></div>
+          <div class="tb-item"><div class="ic">👤</div><div>Profile</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-weight: 900; font-size: 1.5rem; margin: 4rem 0 0.5rem; letter-spacing: -0.025em;">Push notification</h3>
+    <p style="color: var(--ink-soft); max-width: 600px;">The gradient icon is the brand moment in the notification shade — instant recognition, even when the app's closed.</p>
+    <div class="notif-preview">
+      <div class="notif-icon">🌅</div>
+      <div class="notif-body">
+        <div class="notif-title">Tom just spun up a run near you</div>
+        <div class="notif-text">Dawn Patrol · Sat 5:30am · 0.6km from you</div>
+      </div>
+      <div class="notif-time">now</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="social">
+  <div class="container">
+    <div class="section-label">07 · Social</div>
+    <h2 class="section-title">A feed that looks like a feed.</h2>
+    <p class="section-intro">The grid uses the full palette — each post leans on one colour, the gradient shows up every 3rd or 4th tile. Cohesive without being monotonous.</p>
+
+    <div class="ig-grid">
+      <div class="ig-post ig-1">
+        <div class="ig-label">Manifesto</div>
+        <div class="ig-head">Run<br>together.</div>
+        <div class="ig-foot">@runklub.run</div>
+      </div>
+      <div class="ig-post ig-2">
+        <div class="ig-label">Launch</div>
+        <div class="ig-head">run<em>klub</em></div>
+        <div class="ig-foot">Gold Coast · Mid 2026</div>
+      </div>
+      <div class="ig-post ig-3">
+        <div class="ig-label">Stat</div>
+        <div class="ig-head">87%<br>show up when<br>a klub does.</div>
+        <div class="ig-foot">Community > willpower</div>
+      </div>
+      <div class="ig-post ig-4">
+        <div class="ig-label">Community</div>
+        <div class="ig-head">Find your<br>people.</div>
+        <div class="ig-foot">— Sage, always</div>
+      </div>
+      <div class="ig-post ig-5">
+        <div class="ig-label">Event</div>
+        <div class="ig-head">Dawn<br>Patrol.</div>
+        <div class="ig-foot">Sat 5:30am · Broadbeach</div>
+      </div>
+      <div class="ig-post ig-6">
+        <div class="ig-label">Tip</div>
+        <div class="ig-head">The best<br>pace is the<br>one you<br>can talk at.</div>
+        <div class="ig-foot">Runklub 101</div>
+      </div>
+      <div class="ig-post ig-7">
+        <div class="ig-label">Quote</div>
+        <div class="ig-head">"Running<br>alone<br>fixes your<br>body."</div>
+        <div class="ig-foot">Manifesto, pt. 2</div>
+      </div>
+      <div class="ig-post ig-8">
+        <div class="ig-label">City</div>
+        <div class="ig-head">Gold<br>Coast.</div>
+        <div class="ig-foot">Launching first</div>
+      </div>
+      <div class="ig-post ig-9">
+        <div class="ig-label">Feature</div>
+        <div class="ig-head" style="color: var(--gold);">Klub<br>streaks.</div>
+        <div class="ig-foot">Show up. Keep showing up.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="container">
+    <div class="section-label">08 · Principles</div>
+    <h2 class="section-title">Rules to break, eventually.</h2>
+    <p class="section-intro">Five rules to keep the system honest as it scales across the app, website, Instagram, and everything downstream.</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <h4>Colour has meaning.</h4>
+        <p>Coral = action. Sage = community. Gold = accent. Ink = structure. If a colour isn't doing its job, don't use it.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <h4>The gradient is a moment.</h4>
+        <p>Max three gradient surfaces per screen. Reserve it for the logo, splash, hero CTAs, and celebrations.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <h4>Canvas, not white.</h4>
+        <p>Every screen sits on the warm off-white. Pre-dawn eyes first. Never default to pure white or grey.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <h4>One font, many weights.</h4>
+        <p>DM Sans, everywhere. Regular for body, bold for UI, 900 italic for wordmarks. No second family, ever.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">05</div>
+        <h4>Maps are the art.</h4>
+        <p>No stock photography. The map, the pin, the place — those are the visuals. Keep the UI clean so location can shine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">run<em>klub</em></div>
+  <div>Brand system v1 · Built to evolve · runklub.run</div>
+</footer>
+
+</body>
+</html>

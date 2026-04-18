@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="sunset" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5A4E"/>
+      <stop offset="45%" stop-color="#FF8A3D"/>
+      <stop offset="100%" stop-color="#E8A62C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+  <text x="512" y="470"
+        font-family="'DM Sans', sans-serif"
+        font-weight="900"
+        font-size="360"
+        fill="#1A1D24"
+        text-anchor="middle"
+        letter-spacing="-20">run</text>
+  <text x="512" y="820"
+        font-family="'DM Sans', sans-serif"
+        font-weight="900"
+        font-style="italic"
+        font-size="360"
+        fill="url(#sunset)"
+        text-anchor="middle"
+        letter-spacing="-20">klub</text>
+</svg>

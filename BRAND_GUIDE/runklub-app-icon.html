@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Runklub — App Icon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #2a2a2a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #FBF7F2;
+    gap: 2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: rgba(251, 247, 242, 0.6);
+    margin-bottom: 0.5rem;
+  }
+  .icon-row {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .icon-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .icon-wrap {
+    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.6);
+  }
+  .size-1024 { width: 320px; height: 320px; }
+  .size-180 { width: 180px; height: 180px; }
+  .size-120 { width: 120px; height: 120px; }
+  .size-80 { width: 80px; height: 80px; }
+  .size-60 { width: 60px; height: 60px; }
+  .cell-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(251, 247, 242, 0.5);
+    font-weight: 600;
+  }
+  .bg-section {
+    padding: 3rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+  }
+  .bg-light { background: #FBF7F2; }
+  .bg-light .cell-label { color: rgba(26, 29, 36, 0.5); }
+  .bg-dark { background: #1A1D24; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+
+<h1>Runklub App Icon · 1024 × 1024</h1>
+<div class="label">Primary icon</div>
+
+<!-- The master icon, rendered at 320px (displays the 1024 artboard) -->
+<div class="icon-cell">
+  <div class="icon-wrap size-1024">
+    <svg id="master-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <linearGradient id="sunset" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF5A4E"/>
+          <stop offset="45%" stop-color="#FF8A3D"/>
+          <stop offset="100%" stop-color="#E8A62C"/>
+        </linearGradient>
+      </defs>
+      <!-- Rounded background -->
+      <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+
+      <!-- run (black, top half) -->
+      <text x="512" y="470"
+            font-family="DM Sans, sans-serif"
+            font-weight="900"
+            font-size="360"
+            fill="#1A1D24"
+            text-anchor="middle"
+            letter-spacing="-20">run</text>
+
+      <!-- klub (sunset gradient italic, bottom half) -->
+      <text x="512" y="820"
+            font-family="DM Sans, sans-serif"
+            font-weight="900"
+            font-style="italic"
+            font-size="360"
+            fill="url(#sunset)"
+            text-anchor="middle"
+            letter-spacing="-20">klub</text>
+    </svg>
+  </div>
+  <div class="cell-label">1024 × 1024 · Master</div>
+</div>
+
+<!-- Size progression — to check how it reads at small sizes -->
+<div class="bg-section bg-light">
+  <div class="label" style="color: rgba(26, 29, 36, 0.5); margin-bottom: 1.5rem;">At scale · On light</div>
+  <div class="icon-row">
+    <div class="icon-cell">
+      <div class="icon-wrap size-180">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset2)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">180pt (iOS)</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-wrap size-120">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset3)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">120pt</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-wrap size-80">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset4" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset4)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">80pt</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-wrap size-60">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset5)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">60pt (Home)</div>
+    </div>
+  </div>
+</div>
+
+<!-- On dark -->
+<div class="bg-section bg-dark">
+  <div class="label" style="margin-bottom: 1.5rem;">On dark · Home screen test</div>
+  <div class="icon-row">
+    <div class="icon-cell">
+      <div class="icon-wrap size-180">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset6" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset6)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">180pt</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-wrap size-80">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset7" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset7)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">80pt</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-wrap size-60">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="sunset8" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5A4E"/>
+              <stop offset="45%" stop-color="#FF8A3D"/>
+              <stop offset="100%" stop-color="#E8A62C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1024" height="1024" rx="230" ry="230" fill="#FBF7F2"/>
+          <text x="512" y="470" font-family="DM Sans" font-weight="900" font-size="360" fill="#1A1D24" text-anchor="middle" letter-spacing="-20">run</text>
+          <text x="512" y="820" font-family="DM Sans" font-weight="900" font-style="italic" font-size="360" fill="url(#sunset8)" text-anchor="middle" letter-spacing="-20">klub</text>
+        </svg>
+      </div>
+      <div class="cell-label">60pt</div>
+    </div>
+  </div>
+</div>
+
+<p style="max-width: 640px; text-align: center; color: rgba(251, 247, 242, 0.7); line-height: 1.6; margin-top: 1rem; font-size: 0.95rem;">
+  The SVG file (<strong style="color: #FBF7F2;">runklub-icon.svg</strong>) is your master — infinitely scalable, edit-ready.<br>
+  For App Store submission, export to PNG at 1024×1024 (use any SVG-to-PNG tool or open in Figma).
+</p>
+
+</body>
+</html>
