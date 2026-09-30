@@ -1,0 +1,29 @@
+/* Shared styles for RunKlub legal pages. Brand: canvas bg, ink text, coral accents. */
+:root { color-scheme: light; }
+body {
+  margin: 0;
+  background: #FBF7F2;
+  color: #1A1D24;
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "DM Sans", "Segoe UI", Roboto, sans-serif;
+}
+main { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.8rem; line-height: 1.2; margin: 16px 0 4px; }
+h2 { font-size: 1.15rem; margin: 32px 0 8px; }
+.meta { color: #8A8F99; margin-top: 0; }
+a { color: #E8422F; }
+.draft {
+  background: #F7E4B8; border: 1px solid #E8A62C; border-radius: 12px;
+  padding: 10px 14px; font-weight: 600;
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; display: block; overflow-x: auto; }
+th, td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px solid #F3EDE4; }
+th { background: #F3EDE4; }
+.links { margin-top: 40px; }
+h3 { font-size: 1rem; margin: 20px 0 4px; }
+ul, ol { padding-left: 1.3em; }
+li { margin: 4px 0; }
+nav.top { font-size: 0.9rem; color: #8A8F99; }
+nav.top a { text-decoration: none; font-weight: 600; }
+.wordmark { font-size: 2.6rem; font-weight: 400; letter-spacing: -0.02em; margin-top: 32px; }
+.wordmark span { font-weight: 900; font-style: italic; color: #FF5A4E; }
+.lede { font-size: 1.15rem; }
